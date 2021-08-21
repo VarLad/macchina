@@ -340,9 +340,20 @@ pub fn get_all_readouts<'a>(
     }
 
     if should_display.contains(&ReadoutKey::DiskSpace) {
-        match general_readout.disk_space() {
-            Ok(space) => readout_values.push(Readout::new(ReadoutKey::DiskSpace, space)),
-            Err(e) => readout_values.push(Readout::new_err(ReadoutKey::DiskSpace, e))
+        let disk_space = general_readout.disk_space();
+        if let Err(e) = disk_space {
+            readout_values.push(Readout::new_err(ReadoutKey::DiskSpace, e));
+        } else if let Ok((used, total)) = disk_space {
+            if opt.bar {
+                let percentage = (used.get_byte().get_bytes() as f64 / total.get_byte().get_bytes() as f64 * 100.0) as u8;
+                let bar = create_bar(theme, crate::bars::num_to_blocks(percentage));
+                readout_values.push(Readout::new(ReadoutKey::DiskSpace, bar));
+            } else {
+                readout_values.push(Readout::new(
+                    ReadoutKey::DiskSpace,
+                    format!("{}/{}", used.to_string(), total.to_string()),
+                ))
+            }
         }
     }
 
