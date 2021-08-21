@@ -107,6 +107,11 @@ impl ReadoutKey {
                 values.insert(&AbbreviationType::Alternative, "Bat");
                 values.insert(&AbbreviationType::Long, "Battery");
             }
+            ReadoutKey::DiskSpace => {
+                values.insert(&AbbreviationType::Classic, "Disk Space");
+                values.insert(&AbbreviationType::Alternative, "Space");
+                values.insert(&AbbreviationType::Long, "Free Disk Space");
+            }
         }
 
         values

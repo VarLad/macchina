@@ -110,6 +110,7 @@ theme = "Beryllium"
 #   - ProcessorLoad
 #   - Memory
 #   - Battery
+#   - DiskSpace
 # Example:
 #   hide = ["Battery", "Memory", ...]
 hide = []
@@ -134,6 +135,7 @@ hide = []
 #   - ProcessorLoad
 #   - Memory
 #   - Battery
+#   - DiskSpace
 # Example:
 #   show_only = ["Battery", "Memory", ...]
 # show_only = []

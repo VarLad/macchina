@@ -4,5 +4,4 @@ use std::io;
 pub enum Error {
     ConfigError,
     IOError(io::Error),
-
 }

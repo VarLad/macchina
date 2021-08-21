@@ -31,6 +31,7 @@ arg_enum! {
         Memory,
         Battery,
         LocalIP,
+        DiskSpace,
     }
 }
 
@@ -335,6 +336,13 @@ pub fn get_all_readouts<'a>(
                 }
             }
             (Err(e), _) | (_, Err(e)) => readout_values.push(Readout::new_err(key, e)),
+        }
+    }
+
+    if should_display.contains(&ReadoutKey::DiskSpace) {
+        match general_readout.disk_space() {
+            Ok(space) => readout_values.push(Readout::new(ReadoutKey::DiskSpace, space)),
+            Err(e) => readout_values.push(Readout::new_err(ReadoutKey::DiskSpace, e))
         }
     }
 
