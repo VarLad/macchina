@@ -63,10 +63,14 @@ In our wiki,
 
 ## Themes
 
-As previously mentioned, themes have gotten two new additions. Also, the `color`
+- As previously mentioned, themes have gotten two new additions. Also, the `color`
 option has been renamed to `key_color` to avoid ambiguity. Have a look at at the
 provided
 [example theme](https://github.com/Macchina-CLI/macchina/blob/main/theme/Carbon.toml).
+
+- We've also removed built-in themes in favor of packaging them in the source's
+`themes` directory, now that our theming system is mature enough to support
+this decision.
 
 ---
 
